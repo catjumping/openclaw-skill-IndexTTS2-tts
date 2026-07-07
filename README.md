@@ -1,6 +1,6 @@
-# LipVoice TTS - OpenClaw Skill
+# IndexTTS2 TTS - OpenClaw Skill
 
-> 🔊 LipVoice 语音克隆与文本转语音合成技能，为 OpenClaw 智能助手提供高质量中文语音合成能力。
+> 🔊 IndexTTS2 语音克隆与文本转语音合成技能，为 OpenClaw 智能助手提供高质量中文语音合成能力。
 
 [![ClawHub](https://img.shields.io/badge/ClawHub-lipvoice--tts-blue)](https://clawhub.ai)
 [![Version](https://img.shields.io/badge/version-1.0.0-green)](https://github.com/catjumping/openclaw-skill-IndexTTS2-tts)
@@ -10,17 +10,17 @@
 
 ## ⚠️ 重要说明：企业会员专属
 
-**本技能需要 LipVoice 企业会员 API Key 才能使用**。
+**本技能需要 IndexTTS2 企业会员 API Key 才能使用**。
 
-- 官网：[https://lipvoice.cn](https://lipvoice.cn)
+- 官网：[https://indextts.xin](https://indextts.xin)
 - 请联系 LipVoice 客服购买企业会员并获取 API Key
-- 非企业会员可以使用 LipVoice 网页版进行语音合成，无需 API
+- 非企业会员可以使用 IndexTTS2 网页版进行语音合成，无需 API
 
 ---
 
 ## ✨ 功能特性
 
-- 🎤 **声音克隆**：上传 30秒-2分钟 清晰音频即可创建专属声音模型
+- 🎤 **声音克隆**：上传 30秒左右 清晰音频即可创建专属声音模型
 - 📋 **模型管理**：列出、删除已创建的声音模型
 - 🚀 **一键合成**：单命令完成「创建任务→等待→下载」，无需分步操作
 - 🪟 **Windows 兼容**：完美解决 Windows 控制台 GBK 中文编码问题
@@ -161,7 +161,7 @@ py scripts/lipvoice_tts.py delete --audio-id <模型ID>
 A: 请设置环境变量 `LIPVOICE_API_KEY`，或者调用时添加 `--api-key ***` 参数。
 
 ### Q: 提示 "sign无效或用户未开通API"
-A: 检查 API Key 是否正确，确认你的账号已开通 LipVoice 企业会员 API 权限。
+A: 检查 API Key 是否正确，确认你的账号已开通 IndexTTS2 企业会员 API 权限。
 
 ### Q: 合成需要多长时间？
 A: 通常 3-10 秒，脚本会自动轮询等待，最长等待 60 秒。
