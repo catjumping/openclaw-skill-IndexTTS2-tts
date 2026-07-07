@@ -3,7 +3,7 @@
 > 🔊 LipVoice 语音克隆与文本转语音合成技能，为 OpenClaw 智能助手提供高质量中文语音合成能力。
 
 [![ClawHub](https://img.shields.io/badge/ClawHub-lipvoice--tts-blue)](https://clawhub.ai)
-[![Version](https://img.shields.io/badge/version-1.0.0-green)](https://github.com/yourusername/openclaw-skill-lipvoice-tts)
+[![Version](https://img.shields.io/badge/version-1.0.0-green)](https://github.com/catjumping/openclaw-skill-IndexTTS2-tts)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 
 ---
@@ -39,7 +39,7 @@
 ### 方法二：Git 安装（推荐，方便更新）
 ```bash
 cd /path/to/your/openclaw/workspace/skills
-git clone https://github.com/yourusername/openclaw-skill-lipvoice-tts.git lipvoice-tts
+git clone https://github.com/catjumping/openclaw-skill-IndexTTS2-tts.git lipvoice-tts
 ```
 
 更新技能：
