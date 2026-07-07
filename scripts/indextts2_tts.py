@@ -117,7 +117,7 @@ def list_models():
     return result
 
 
-def create_tts(text, audio_id, style="1", genre=None, output=None):
+def create_tts(text, audio_id, style="1", genre=None, speed=None, emotion_path=None, output=None):
     """创建TTS任务并等待完成"""
     data = {
         'audioId': audio_id,
@@ -126,6 +126,10 @@ def create_tts(text, audio_id, style="1", genre=None, output=None):
     }
     if genre is not None:
         data['genre'] = genre
+    if speed is not None:
+        data['speed'] = speed
+    if emotion_path is not None:
+        data['emotionPath'] = emotion_path
     
     result = make_request('POST', '/tts/create', data)
     
@@ -194,11 +198,13 @@ def main():
     
     # 合成语音
     p_tts = subparsers.add_parser('tts', help='文本转语音，自动等待合成并下载')
-    p_tts.add_argument('--text', required=True, help='要合成的文本')
+    p_tts.add_argument('--text', required=True, help='要合成的文本（最大5000字符）')
     p_tts.add_argument('--audio-id', required=True, help='声音模型ID')
-    p_tts.add_argument('--style', default='1', help='合成模式: 1=参考原音频风格, 2=大模型通用风格 (默认: 1)')
-    p_tts.add_argument('--genre', type=int, help='语气参数 (可选)')
-    p_tts.add_argument('--output', '-o', help='输出音频文件路径 (默认: tts_<taskid>.wav)')
+    p_tts.add_argument('--style', default='1', help='模型版本: 1=基础模型, 2=专业模型, 3=多语言模型 (默认: 1)')
+    p_tts.add_argument('--genre', type=int, help='模型类别: 0=参考原音频(默认), 1=语气参考模式(专业模型), 2=使用参考音频(专业模型) (可选)')
+    p_tts.add_argument('--speed', type=float, help='语速控制，范围0.5~1.5，默认1.0 (可选)')
+    p_tts.add_argument('--emotion-path', help='参考音频URL (仅genre=2且style=2专业模式时使用, 可选)')
+    p_tts.add_argument('--output', '-o', help='本地输出wav文件路径 (脚本参数, 默认: tts_<taskid>.wav, API本身无此参数)')
     
     # 删除模型
     p_delete = subparsers.add_parser('delete', help='删除指定声音模型')
@@ -216,7 +222,7 @@ def main():
     elif args.command == 'list':
         list_models()
     elif args.command == 'tts':
-        create_tts(args.text, args.audio_id, args.style, args.genre, args.output)
+        create_tts(args.text, args.audio_id, args.style, args.genre, args.speed, args.emotion_path, args.output)
     elif args.command == 'delete':
         delete_model(args.audio_id)
     else:
