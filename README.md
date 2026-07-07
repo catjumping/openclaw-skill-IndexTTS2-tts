@@ -13,8 +13,8 @@
 **本技能需要 IndexTTS2 企业会员 API Key 才能使用**。
 
 - 官网：[https://indextts.xin](https://indextts.xin)
-- 请联系 LipVoice 客服购买企业会员并获取 API Key
-- 非企业会员可以使用 IndexTTS2 网页版进行语音合成，无需 API
+- 请联系 IndexTTS2 客服购买企业会员并获取 API Key
+- 非企业会员可以使用 IndexTTS2 网页版进行语音合成，无需 API合成
 
 ---
 
@@ -98,7 +98,7 @@ py scripts/lipvoice_tts.py list
 py scripts/lipvoice_tts.py upload --file <音频文件路径> --name "<模型名称>" [--describe "<描述>"]
 ```
 - 支持格式：mp3/wav/m4a
-- 建议使用 30秒-2分钟 清晰无背景噪音的人声，效果更佳
+- 建议使用 30秒左右 清晰无背景噪音的人声，效果更佳
 
 **示例：**
 ```powershell
@@ -111,15 +111,24 @@ py scripts/lipvoice_tts.py tts --text "<要合成的文本>" --audio-id <模型I
 ```
 
 **选项：**
-- `--style 1|2`：合成模式
-  - `1`：参考原音频风格（默认，最贴近克隆声音）
-  - `2`：大模型通用风格（更稳定自然）
+- `--style 1|2|3`：合成模式
+  - `1`：基础模型
+  - `2`：专业模型
+  - `3`：多语言模型
+
 - `--genre <int>`：语气参数（可选）
+  - `0`：参考原音频（普通模型和专业模型和多语言模型都支持）
+  - `1`：语气参考模式(专业模型）
+  - `2`：使用参考音频 同时需要传入有效的emotionPath
+  - `speed <integer >`语速控制 默认1.0，范围是0.5<=speed<=1.5
+  - `emotionPath <string >`要使用参考音频，需要同时设置genre=2和style=2
+
+
 - `--output/-o <路径>`：自定义输出 wav 文件路径
 
 **示例：**
 ```powershell
-py scripts/lipvoice_tts.py tts --text "你好，欢迎使用LipVoice语音合成！" --audio-id ABuXqMU5ZnPCFBHtv93wmnhqLM --output "output.wav"
+py scripts/lipvoice_tts.py tts --text "你好，欢迎使用IndexTTS2语音合成！" --audio-id ABuXqMU5ZnPCFBHtv93wmnhqLM --output "output.wav"
 ```
 
 ### 4. 删除不需要的模型
@@ -164,7 +173,7 @@ A: 请设置环境变量 `LIPVOICE_API_KEY`，或者调用时添加 `--api-key *
 A: 检查 API Key 是否正确，确认你的账号已开通 IndexTTS2 企业会员 API 权限。
 
 ### Q: 合成需要多长时间？
-A: 通常 3-10 秒，脚本会自动轮询等待，最长等待 60 秒。
+A: 通常 3-10 秒，取决于音频大小，脚本会自动轮询等待，最长等待 60 秒。
 
 ### Q: 为什么Windows下输出乱码？
 A: 本技能 v1.0.0 已经修复 Windows GBK 编码问题，如果仍有问题请确保使用 Python 3.7+。
