@@ -1,22 +1,23 @@
 ---
-name: lipvoice-tts
-description: LipVoice 语音克隆和文本转语音合成：上传参考音频创建声音模型、列出已有模型、文本转语音合成下载（需要企业会员）
+name: indextts2-tts
+description: IndexTTS2 语音克隆和文本转语音合成：上传参考音频创建声音模型、列出已有模型、文本转语音合成下载（需要企业会员）
 triggers:
   - 语音合成
   - 声音克隆
   - TTS
-  - lipvoice
+  - IndexTTS
+  - IndexTTS2
   - 文本转语音
   - 声音模型
   - 参考音频
 ---
 
-# LipVoice TTS 语音合成技能
+# IndexTTS2 TTS 语音合成技能
 
 > [!IMPORTANT]
 > ## ⚠️ 企业会员专属技能
 > 
-> **本技能需要 LipVoice 企业会员才能使用**
+> **本技能需要 IndexTTS2 企业会员才能使用**
 > 
 > | 项目 | 说明 |
 > |------|------|
@@ -27,7 +28,7 @@ triggers:
 > **未获取API Key请勿安装此技能！**
 
 ## 技能描述
-LipVoice 是一个专业的语音克隆和语音合成 API 服务。本技能提供简洁的命令行接口，支持声音模型管理、一键文本转语音（自动等待完成并下载）等核心功能。
+IndexTTS2 是一个专业的语音克隆和语音合成 API 服务。本技能提供简洁的命令行接口，支持声音模型管理、一键文本转语音（自动等待完成并下载）等核心功能。
 
 ## 适用场景
 - 创建声音克隆模型（基于 30秒-2分钟 的清晰音频样本）
@@ -46,17 +47,18 @@ LipVoice 是一个专业的语音克隆和语音合成 API 服务。本技能提
 ### 方式1：环境变量（推荐，一次配置永久生效）
 **Windows PowerShell:**
 ```powershell
-$env:LIPVOICE_API_KEY='你的 API Key'
+$env:INDEXTTS2_API_KEY='你的 API Key'
 ```
+> 注：也兼容旧环境变量 `LIPVOICE_API_KEY`
 
 **Windows CMD:**
 ```cmd
-set LIPVOICE_API_KEY=你的 API Key
+set INDEXTTS2_API_KEY=你的 API Key
 ```
 
 **Linux/macOS:**
 ```bash
-export LIPVOICE_API_KEY='你的 API Key'
+export INDEXTTS2_API_KEY='你的 API Key'
 ```
 
 ### 方式2：命令行参数传入
@@ -64,7 +66,7 @@ export LIPVOICE_API_KEY='你的 API Key'
 
 ## 命令参考
 
-脚本路径：`scripts/lipvoice_tts.py`（相对于本技能目录）
+脚本路径：`scripts/indextts2_tts.py`（相对于本技能目录）
 
 > **注意**：Windows 下使用 `py` 启动，Linux/macOS 使用 `python3`。
 
@@ -74,7 +76,7 @@ export LIPVOICE_API_KEY='你的 API Key'
 
 #### 1. 查询模型列表
 ```bash
-py scripts/lipvoice_tts.py list
+py scripts/indextts2_tts.py list
 ```
 列出所有已上传的声音模型及其 ID，合成语音时需要用到模型 ID。
 
@@ -82,7 +84,7 @@ py scripts/lipvoice_tts.py list
 
 #### 2. 上传音频创建声音克隆模型
 ```bash
-py scripts/lipvoice_tts.py upload --file <音频文件路径> --name "<模型名称>" [--describe "<描述>"]
+py scripts/indextts2_tts.py upload --file <音频文件路径> --name "<模型名称>" [--describe "<描述>"]
 ```
 
 **参数说明：**
@@ -94,14 +96,14 @@ py scripts/lipvoice_tts.py upload --file <音频文件路径> --name "<模型名
 
 **示例：**
 ```powershell
-py scripts/lipvoice_tts.py upload --file "C:/Users/xxx/Desktop/myvoice.wav" --name "我的声音" --describe "温暖男声"
+py scripts/indextts2_tts.py upload --file "C:/Users/xxx/Desktop/myvoice.wav" --name "我的声音" --describe "温暖男声"
 ```
 
 ---
 
 #### 3. 删除模型
 ```bash
-py scripts/lipvoice_tts.py delete --audio-id <模型ID>
+py scripts/indextts2_tts.py delete --audio-id <模型ID>
 ```
 
 **参数说明：**
@@ -114,7 +116,7 @@ py scripts/lipvoice_tts.py delete --audio-id <模型ID>
 
 #### 4. 一键语音合成（自动等待+下载）
 ```bash
-py scripts/lipvoice_tts.py tts --text "<要合成的文本>" --audio-id <模型ID> [选项]
+py scripts/indextts2_tts.py tts --text "<要合成的文本>" --audio-id <模型ID> [选项]
 ```
 
 **参数说明：**
@@ -129,10 +131,10 @@ py scripts/lipvoice_tts.py tts --text "<要合成的文本>" --audio-id <模型I
 **示例：**
 ```powershell
 # 默认风格合成，自动下载
-py scripts/lipvoice_tts.py tts --text "你好，欢迎使用LipVoice语音合成！" --audio-id ABuXqr7gEtrXeojvMM6CBDpqNV
+py scripts/indextts2_tts.py tts --text "你好，欢迎使用IndexTTS2语音合成！" --audio-id ABuXqr7gEtrXeojvMM6CBDpqNV
 
 # 指定输出路径
-py scripts/lipvoice_tts.py tts --text "今天天气真不错" --audio-id ABuXqr7gEtrXeojvMM6CBDpqNV --output "C:/Users/xxx/Desktop/output.wav"
+py scripts/indextts2_tts.py tts --text "今天天气真不错" --audio-id ABuXqr7gEtrXeojvMM6CBDpqNV --output "C:/Users/xxx/Desktop/output.wav"
 ```
 
 **功能说明：**
@@ -173,16 +175,16 @@ py scripts/lipvoice_tts.py tts --text "今天天气真不错" --audio-id ABuXqr7
 
 ```powershell
 # 1. 设置API Key
-$env:LIPVOICE_API_KEY='你的企业会员API Key'
+$env:INDEXTTS2_API_KEY='你的企业会员API Key'
 
 # 2. 查看已有声音模型
-py scripts/lipvoice_tts.py list
+py scripts/indextts2_tts.py list
 
 # 3. （可选）上传新的参考音频创建模型
-py scripts/lipvoice_tts.py upload --file "参考音频.wav" --name "我的克隆声音"
+py scripts/indextts2_tts.py upload --file "参考音频.wav" --name "我的克隆声音"
 
 # 4. 使用模型合成语音（自动等待+下载）
-py scripts/lipvoice_tts.py tts --text "需要合成的文本内容" --audio-id <模型ID> --output "输出.wav"
+py scripts/indextts2_tts.py tts --text "需要合成的文本内容" --audio-id <模型ID> --output "输出.wav"
 
 # 5. 将生成的wav文件作为附件返回给用户
 ```
@@ -192,7 +194,7 @@ py scripts/lipvoice_tts.py tts --text "需要合成的文本内容" --audio-id <
 ## 常见问题
 
 ### Q: 提示 "未配置API Key" 怎么办？
-A: 请设置环境变量 `LIPVOICE_API_KEY`，或者调用时添加 `--api-key 你的Key` 参数。
+A: 请设置环境变量 `INDEXTTS2_API_KEY`（兼容旧的 `LIPVOICE_API_KEY`），或者调用时添加 `--api-key 你的Key` 参数。
 
 ### Q: 提示 "sign无效或用户未开通API" 怎么办？
 A: 请检查你的 API Key 是否正确，并且账号已经开通企业会员 API 权限。
@@ -208,9 +210,9 @@ A: 上传参考音频支持 mp3/wav/m4a，合成输出为 wav 格式。
 ## 更新日志
 
 ### v1.0.0 - 2026-07-07
-- 🎉 首次发布
+- 🎉 首次发布，品牌升级为 IndexTTS2
 - ✅ 支持声音模型上传、列表、删除
 - ✅ 一键 TTS 合成，自动等待完成并下载
 - ✅ 修复 Windows 中文 GBK 编码问题
 - ✅ 无需额外依赖，系统自带 Python 即可运行
-- ✅ API Key 支持环境变量和参数两种配置方式
+- ✅ API Key 支持环境变量和参数两种配置方式，兼容旧版 LIPVOICE_API_KEY

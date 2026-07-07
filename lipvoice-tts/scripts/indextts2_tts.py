@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-LipVoice TTS API 客户端
+IndexTTS2 TTS API 客户端
 """
 import os
 import sys
@@ -16,8 +16,10 @@ if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
     sys.stderr.reconfigure(encoding='utf-8')
 
-# API Key 优先级: 参数 > 环境变量 LIPVOICE_API_KEY > 脚本内配置
-API_KEY = os.environ.get("LIPVOICE_API_KEY", "")
+# API Key 优先级: 参数 > 环境变量 INDEXTTS2_API_KEY > 兼容旧 LIPVOICE_API_KEY
+API_KEY = os.environ.get("INDEXTTS2_API_KEY", "")
+if not API_KEY:
+    API_KEY = os.environ.get("LIPVOICE_API_KEY", "")
 
 BASE_URL = "https://openapi.lipvoice.cn/api/third"
 
@@ -28,7 +30,7 @@ def make_request(method, path, data=None, files=None):
     headers = {'sign': API_KEY}
     
     if not API_KEY:
-        return {"code": -1, "msg": "未配置API Key，请设置环境变量 LIPVOICE_API_KEY 或传入 --api-key 参数"}
+        return {"code": -1, "msg": "未配置API Key，请设置环境变量 INDEXTTS2_API_KEY 或传入 --api-key ***"}
     
     if files:
         # multipart/form-data
@@ -177,8 +179,8 @@ def delete_model(audio_id):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="LipVoice TTS 语音合成工具")
-    parser.add_argument('--api-key', help='LipVoice API Key (企业会员)')
+    parser = argparse.ArgumentParser(description="IndexTTS2 TTS 语音合成工具")
+    parser.add_argument('--api-key', help='IndexTTS2 API Key (企业会员)')
     subparsers = parser.add_subparsers(dest='command', help='可用命令')
     
     # 上传模型
