@@ -12,7 +12,7 @@
 
 **本技能需要 IndexTTS2 企业会员 API Key 才能使用**。
 
-- 官网：[https://lipvoice.cn](https://lipvoice.cn)
+- 官网：[https://indextts.xin](https://indextts.xin)
 - 请联系 IndexTTS2 客服购买企业会员并获取 API Key
 - 非企业会员可以使用 IndexTTS2 网页版进行语音合成，无需 API
 

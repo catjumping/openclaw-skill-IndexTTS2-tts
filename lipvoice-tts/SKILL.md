@@ -22,7 +22,7 @@ triggers:
 > | 项目 | 说明 |
 > |------|------|
 > | **API Key** | 仅企业会员可获得 |
-> | **官方网站** | [https://lipvoice.cn](https://lipvoice.cn) |
+> | **官方网站** | [https://indextts.xin](https://indextts.xin) |
 > | **购买方式** | 联系客服获取企业会员和API Key |
 > 
 > **未获取API Key请勿安装此技能！**
